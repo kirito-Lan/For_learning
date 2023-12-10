@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kirito.management.mapper.ArticleMapper">
+    <!--动态SQL-->
+    <!--id 是接口的名称-->
+    <select id="getPage" resultType="com.kirito.management.pojo.Article">
+        select * from article
+        <where>
+            <if test="categoryId!=null">
+                category_id=#{categoryId}
+            </if>
+            <if test="state!=null">
+                and state=#{state}
+            </if>
+        and create_user=#{userid}
+        </where>
+    </select>
+</mapper>
