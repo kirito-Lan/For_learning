@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/
+    url: jdbc:mysql://localhost:3306/big_event
     username: root
-    password:
+    password: Lan.131645
   data:
     redis:
       host: localhost
@@ -12,7 +12,7 @@ spring:
   servlet:
     multipart:
       max-file-size: 4MB
-
+      max-request-size: 4MB
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

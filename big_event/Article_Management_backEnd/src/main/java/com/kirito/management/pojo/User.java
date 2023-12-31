@@ -21,7 +21,7 @@ public class User {
     //id
     private Integer id;
     //用户名
-    @Pattern(regexp = "[a-z0-9_-]{3,15}")
+    @Pattern(regexp = "[a-z0-9A-Z_]{3,15}")
     private String username;
     //昵称
     //5-15个字符,非空
@@ -31,12 +31,12 @@ public class User {
     @URL
     private String avatar;
     //邮箱
-    @Email
+    @Email(message = "请输入正确的邮箱")
     private String email;
     //密码
     @JsonIgnore  //转JSON的时候自动忽略
     //密码至少六位,至少包含一个特殊字符,以及大小写
-    @Pattern(regexp = "^\\S*(?=\\S{6,})(?=\\S*\\d)(?=\\S*[A-Z])(?=\\S*[a-z])(?=\\S*[!@#$%^&*? ])\\S*$")
+    @Pattern(regexp = "^\\S*(?=\\S{6,})(?=\\S*\\d)(?=\\S*[a-z])(?=\\S*[!@#$%^&*?.])\\S*$")
     private String password;
     // 创建时间
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -18,14 +18,17 @@ public interface ArticleMapper {
     //需要书写动态SQL
     List<Article> getPage(Integer userid, Integer categoryId, String state);
 
-    //通过id获取文章信息
+    //通过id获取文章
     @Select("select * from article where id=#{id}")
     Article getArticleInfo(String id);
 
     @Delete("delete from article where id=#{id}")
     int deleteArticleById(String id);
+
     @Update("update big_event.article set " +
             "title=#{title} ,content=#{content},cover_img=#{coverImg}," +
             "state=#{state},category_id=#{categoryId},update_time=#{updateTime} where id=#{id}")
     int modifyArticle(Article article);
+
+    List<Article> selectArticle( Integer categoryId,String title);
 }

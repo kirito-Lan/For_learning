@@ -3,6 +3,8 @@ package com.kirito.management.service;
 import com.kirito.management.pojo.Article;
 import com.kirito.management.pojo.PageBean;
 
+import java.util.List;
+
 public interface ArticleService {
 
     //条件分页查询
@@ -19,4 +21,7 @@ public interface ArticleService {
 
     //修改文章
     boolean modifyArticle(Article article);
+
+    //搜索文章
+    PageBean<Article> selectArticle(Integer pageNum, Integer pageSize, Integer categoryId,String title);
 }

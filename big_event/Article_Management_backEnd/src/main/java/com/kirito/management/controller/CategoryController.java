@@ -4,7 +4,6 @@ package com.kirito.management.controller;
 import com.kirito.management.pojo.Category;
 import com.kirito.management.pojo.Result;
 import com.kirito.management.service.CategoryService;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -40,9 +39,16 @@ public class CategoryController {
         return categoryService.modifyCategory(category) ? Result.success() : Result.fail("修改失败请重试");
     }
 
+    //删除分类
     @DeleteMapping
     public Result<String> deleteCategory(@RequestParam String id){
         return categoryService.deleteCategory(id) ? Result.success() : Result.fail("修改失败请重试");
+    }
+
+    //获取全部分类
+    @GetMapping("/getCategoryAll")
+    public Result<List<Category>> getCategoryAll() {
+        return Result.success(categoryService.getCategoriesAll());
     }
 
 

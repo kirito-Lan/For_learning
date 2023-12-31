@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
@@ -23,7 +25,7 @@ public class ArticleController {
     public Result<String> addArticle(@RequestBody @Validated Article article) {
         return articleService.addArticle(article)
                 ? Result.success()
-                : Result.fail("failed to add the article please try again");
+                : Result.fail("添加失败");
     }
 
     //分页查询
@@ -43,23 +45,31 @@ public class ArticleController {
 
     @GetMapping("/detail")
     public Result<Article> getArticleById(String id) {
-
         return Result.success(articleService.getArticleInfo(id));
-
     }
 
     @DeleteMapping
-    public Result<String>deleteArticle(String id){
+    public Result<String> deleteArticle(String id) {
         return articleService.deleteArticleById(id)
-                ?Result.success()
-                :Result.fail("删除失败,请重试");
+                ? Result.success()
+                : Result.fail("删除失败,请重试");
     }
 
     @PutMapping
-    public Result<String>updateArticle(@RequestBody @Validated Article article){
+    public Result<String> updateArticle(@RequestBody @Validated Article article) {
         return articleService.modifyArticle(article)
-                ?Result.success()
-                :Result.fail("更新失败,请重试");
+                ? Result.success()
+                : Result.fail("更新失败,请重试");
+    }
+
+    @GetMapping("/selectArticle")
+    public Result<PageBean<Article>> selectArticle(
+            Integer pageNum,
+            Integer pageSize,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) Integer categoryId
+    ){
+        return Result.success(articleService.selectArticle(pageNum,pageSize,categoryId,title));
     }
 
 

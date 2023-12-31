@@ -13,6 +13,7 @@ public interface CategoryMapper {
             "values(#{categoryName},#{categoryAlias},#{createUser},#{createTime},#{updateTime}) ")
     int addCategory(Category category);
 
+
     @Select("select id, category_name, category_alias, create_user, create_time, update_time from big_event.category where create_user=#{id}")
     List<Category> getCategories(String id);
 
@@ -24,5 +25,9 @@ public interface CategoryMapper {
 
     @Delete("delete from big_event.category where id=#{id}")
     int deleteCategory(String id);
+
+    //这个是用于不要登录界面
+    @Select("select id, category_name, category_alias, create_user, create_time, update_time from big_event.category")
+    List<Category> getCategoriesAll();
 
 }

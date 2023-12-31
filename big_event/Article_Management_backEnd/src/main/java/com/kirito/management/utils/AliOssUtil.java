@@ -20,7 +20,6 @@ public class AliOssUtil {
     //@Value("${AliYunOss.secret}")
     private static final String ACCESS_KEY_SECRET = "";
     // 填写Bucket名称，例如examplebucket。
-
     private static final String BUCKET_NAME = "";
 
     public static String uploadFile(String objectName, InputStream in) throws Exception {
@@ -30,9 +29,6 @@ public class AliOssUtil {
         OSS ossClient = new OSSClientBuilder().build(ENDPOINT, ACCESS_KEY_ID, ACCESS_KEY_SECRET);
         String url = "";
         try {
-            // 填写字符串。
-            String content;
-
             // 创建PutObjectRequest对象。
             PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, objectName, in);
 

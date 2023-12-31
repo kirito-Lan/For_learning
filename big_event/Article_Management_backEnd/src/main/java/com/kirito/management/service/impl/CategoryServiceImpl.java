@@ -35,7 +35,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategoryById(String id) {
-
         return categoryMapper.getCategoryById(id);
     }
 
@@ -49,4 +48,13 @@ public class CategoryServiceImpl implements CategoryService {
     public boolean deleteCategory(String id) {
         return categoryMapper.deleteCategory(id)!=0;
     }
+
+
+    //获取全部分类,(公共界面)
+    @Override
+    public List<Category> getCategoriesAll() {
+        return categoryMapper.getCategoriesAll();
+    }
+
+
 }

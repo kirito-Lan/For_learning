@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true) //开始链式调用
 public class Article {
     private Integer id;//主键ID
-    @Pattern(regexp = "^.{1,10}$")
+    @Pattern(regexp = "^.{1,11}$")
     private String title;//文章标题
     @NotEmpty
     private String content;//文章内容

@@ -77,7 +77,7 @@ public class UserController {
 
     //设置头像
     @PatchMapping("/setAvatar")
-    public Result<String> setAvatar(@RequestParam String imgUrl) {
+    public Result<String> setAvatar(@Validated @RequestParam String imgUrl) {
         DecodedJWT decodeJwt = ThreadLocalUtils.get();
         Map<String, Claim> claims = decodeJwt.getClaims();
         return userService.setAvatar(claims.get("id").asString(), imgUrl) ?
@@ -87,13 +87,13 @@ public class UserController {
 
     //更新用户信息
     @PutMapping("/updateInfo")
-    public Result<String> updateInfo(@RequestBody User user) {
+    public Result<String> updateInfo(@Validated @RequestBody User user) {
         return userService.updateUserInfo(user) ? Result.success() : Result.fail("更新失败");
     }
 
     //修改密码
     @PatchMapping("/modifyPwd")
-    public Result<String> modifyPwd(@RequestBody Map<String, String> pwd) {
+    public Result<String> modifyPwd(@Validated @RequestBody Map<String, String> pwd) {
         DecodedJWT decodeJwt = ThreadLocalUtils.get();
         Map<String, Claim> claims = decodeJwt.getClaims();
         User user = userService.getUserByUserName(claims.get("username").asString());

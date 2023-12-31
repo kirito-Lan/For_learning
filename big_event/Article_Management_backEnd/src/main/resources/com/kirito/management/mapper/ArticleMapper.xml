@@ -14,7 +14,24 @@
             <if test="state!=null">
                 and state=#{state}
             </if>
-        and create_user=#{userid}
+            and create_user=#{userid}
         </where>
     </select>
+
+
+    <select id="selectArticle" resultType="com.kirito.management.pojo.Article">
+        select * from article
+        <where>
+            <if test="title!=null">
+                title LIKE CONCAT('%', #{title}, '%')
+            </if>
+            <if test="categoryId!=null">
+                AND category_id=#{categoryId}
+            </if>
+            AND state="已发布"
+        </where>
+    </select>
+
+
+
 </mapper>
